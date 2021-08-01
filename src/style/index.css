@@ -25,3 +25,6 @@ code {
     'Courier New',
     monospace;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
