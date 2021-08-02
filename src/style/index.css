@@ -29,7 +29,12 @@ code {
     'Courier New',
     monospace;
 }
-
+.orange-color {
+ color: orangered
+}
+.background-orange {
+  background-color: orangered;
+}
 .homePage {
   background-image: url('../assets/bg2.jpg');
   background-repeat: no-repeat;
@@ -53,3 +58,4 @@ code {
   width: 28rem;
   margin-top: -6rem;
 }
+
