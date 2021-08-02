@@ -10,7 +10,7 @@ function NavBar() {
           src={user}
           alt="user"
         />
-        <div className="text-gray-500 font-semibold uppercase ">Wesley Larson</div>
+        <div className="text-gray-500 font-semibold uppercase space-y-6 ">Wesley Larson</div>
 
       </div>
       <nav>nav</nav>
