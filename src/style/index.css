@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   margin: 0;
   font-family:
@@ -30,18 +31,25 @@ code {
 }
 
 .homePage {
- background-image: url('../assets/bg2.jpg');
- background-repeat: no-repeat;
- background-size: cover;
- height: 100vh;
+  background-image: url('../assets/bg2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
+
 .nav-links:hover {
   border-radius: 20%;
   color: white;
   text-align: center;
-  
 }
+
 .main-text {
   color: orange;
   font-weight: 800;
+}
+
+.main-img {
+  margin: 0 auto;
+  width: 28rem;
+  margin-top: -6rem;
 }
