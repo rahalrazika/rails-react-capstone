@@ -36,6 +36,11 @@ function NavBar() {
             Partnerships
           </Link>
         </nav>
+        <div className="py-52 text-gray-500 ">
+          <p className="border-t-2 border-gray-300 py-4 ">logout</p>
+          <p>help</p>
+
+        </div>
       </div>
     </div>
   );

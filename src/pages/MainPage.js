@@ -3,7 +3,7 @@ import React from 'react';
 function MainPage() {
   return (
     <div className="flex-1 p-10">
-      <span>here is the projects page</span>
+      <h1>Projects</h1>
     </div>
   );
 }

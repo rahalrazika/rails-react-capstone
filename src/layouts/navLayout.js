@@ -1,10 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { GrMenu } from 'react-icons/gr';
 import NavBar from '../components/NavBar';
 
 const NavLayout = (props) => {
   const [width, setWidth] = useState(window.innerWidth);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const updateWindowSize = () => {
@@ -20,12 +22,15 @@ const NavLayout = (props) => {
       {width > 900 ? (
         <NavBar />
       ) : (
-        <div id="menuButton" className="p-2 h-12 ">
-          <img
-            alt="props.menu"
-            src="https://img.icons8.com/ios-filled/50/000000/menu--v3.png"
-          />
-        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          type="submit"
+          id="menuButton"
+          className="p-2 h-12 "
+        >
+          <GrMenu className="text-5xl" />
+          {isOpen && <NavBar />}
+        </button>
       )}
 
       {props.children}
@@ -33,6 +38,7 @@ const NavLayout = (props) => {
   );
 };
 NavLayout.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.func.isRequired,
 };
+
 export default NavLayout;
