@@ -1,13 +1,9 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
-import ProjectPage from './ProjectPage';
 
 function MainPage() {
   return (
-    <div className="relative min-h-screen flex">
-      <NavBar />
-
-      <ProjectPage />
+    <div className="flex-1 p-10">
+      <span>here is the projects page</span>
     </div>
   );
 }
