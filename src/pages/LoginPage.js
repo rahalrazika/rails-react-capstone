@@ -1,10 +1,43 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import baseUrl from '../api/baseUrl';
 
 function LoginPage() {
   const [data, setData] = useState({ email: '', password: '' });
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: [e.target.value] });
   };
+
+  async function handleSubmit(e, props) {
+    e.preventDefault();
+    const { saveToken, saveUser } = props;
+    setData(...{ data });
+    const config = {
+      method: 'post',
+      url: `${baseUrl}/login`,
+      headers: {
+        'Content-Type': 'application/json',
+        accept: 'application/json',
+      },
+      data: setData,
+    };
+
+    try {
+      const fetch = await axios(config);
+      const authData = fetch.setData;
+      window.localStorage.setItem('token', authData.token);
+      saveToken(authData.token);
+
+      const result = jwtDecode(authData.token);
+      saveUser(result);
+    } catch (error) {
+      setData({ error: 'the Email or password is wrong' });
+    }
+
+    console.log(setData);
+  }
   return (
     <div className="h-screen flex">
       <div className="w-full max-w-md m-auto bg-white   py-10 px-1">
@@ -17,7 +50,7 @@ function LoginPage() {
           </h3>
         </div>
 
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <input
             placeholder="Please enter your email"
             type="email"
@@ -41,7 +74,10 @@ function LoginPage() {
           </div>
         </form>
         <div className="flex items-center mt-6 justify-center">
-          <button type="submit" className="justify-center text-gray-600 hover:underline">
+          <button
+            type="submit"
+            className="justify-center text-gray-600 hover:underline"
+          >
             Need to register? Sign up for free
           </button>
         </div>
@@ -49,5 +85,12 @@ function LoginPage() {
     </div>
   );
 }
-
+LoginPage.propTypes = {
+  saveToken: PropTypes.func,
+  saveUser: PropTypes.func,
+};
+LoginPage.defaultProps = {
+  saveToken: null,
+  saveUser: null,
+};
 export default LoginPage;
