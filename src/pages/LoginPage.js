@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { connect } from 'react-redux';
 import baseUrl from '../api/baseUrl';
+import { saveToken, getUser } from '../redux/actions';
 
-function LoginPage() {
+function LoginPage(props) {
   const [data, setData] = useState({ email: '', password: '' });
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: [e.target.value] });
+    setData(() => ({ ...data, [e.target.name]: e.target.value }));
   };
 
-  async function handleSubmit(e, props) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const { saveToken, saveUser } = props;
-    setData(...{ data });
+    const { saveToken, getUser } = props;
+    console.log(data);
     const config = {
       method: 'post',
       url: `${baseUrl}/login`,
@@ -21,23 +23,23 @@ function LoginPage() {
         'Content-Type': 'application/json',
         accept: 'application/json',
       },
-      data: setData,
+      data,
     };
 
     try {
       const fetch = await axios(config);
-      const authData = fetch.setData;
+      const authData = fetch.data;
       window.localStorage.setItem('token', authData.token);
       saveToken(authData.token);
 
       const result = jwtDecode(authData.token);
-      saveUser(result);
+      getUser(result);
+      window.location.href = '/main';
     } catch (error) {
-      setData({ error: 'the Email or password is wrong' });
+      throw new Error(error);
     }
-
-    console.log(setData);
   }
+
   return (
     <div className="h-screen flex">
       <div className="w-full max-w-md m-auto bg-white   py-10 px-1">
@@ -50,16 +52,18 @@ function LoginPage() {
           </h3>
         </div>
 
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <input
             placeholder="Please enter your email"
             type="email"
+            name="email"
             onChange={handleChange}
             className="w-full p-2 text-primary border rounded-full text-center outline-none text-sm transition duration-150 ease-in-out mb-6 focus:ring-2 ring-yellow-500"
           />
           <input
             placeholder="Password"
             type="password"
+            name="password"
             onChange={handleChange}
             className="w-full p-2 text-primary border rounded-full text-center outline-none text-sm transition duration-150 ease-in-out mb-4  focus:ring-2 ring-yellow-500"
           />
@@ -87,10 +91,11 @@ function LoginPage() {
 }
 LoginPage.propTypes = {
   saveToken: PropTypes.func,
-  saveUser: PropTypes.func,
+  getUser: PropTypes.func,
 };
 LoginPage.defaultProps = {
   saveToken: null,
-  saveUser: null,
+  getUser: null,
 };
-export default LoginPage;
+
+export default connect(null, { saveToken, getUser })(LoginPage);
