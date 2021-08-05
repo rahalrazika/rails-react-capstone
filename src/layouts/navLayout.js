@@ -1,10 +1,9 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { GrMenu } from 'react-icons/gr';
 import NavBar from '../components/NavBar';
 
-const NavLayout = (props) => {
+const NavLayout = ({ children }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,12 +32,14 @@ const NavLayout = (props) => {
         </button>
       )}
 
-      {props.children}
+      {children}
     </div>
   );
 };
 NavLayout.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.instanceOf(Object),
 };
-
+NavLayout.defaultProps = {
+  children: null,
+};
 export default NavLayout;

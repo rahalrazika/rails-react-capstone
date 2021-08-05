@@ -8,34 +8,44 @@ import { saveToken, getUser } from '../redux/actions';
 
 function LoginPage(props) {
   const [data, setData] = useState({ email: '', password: '' });
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const handleChange = (e) => {
     setData(() => ({ ...data, [e.target.name]: e.target.value }));
   };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const { saveToken, getUser } = props;
-    const config = {
-      method: 'post',
-      url: `${baseUrl}/login`,
-      headers: {
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-      },
-      data,
-    };
+    if (!data.email && !data.password) {
+      setEmailError('email');
+      setPasswordError('password');
+    } else if (!emailError) {
+      setEmailError('email');
+    } else if (!passwordError) {
+      setPasswordError('password');
+    } else {
+      const { saveToken, getUser } = props;
+      const config = {
+        method: 'post',
+        url: `${baseUrl}/login`,
+        headers: {
+          'Content-Type': 'application/json',
+          accept: 'application/json',
+        },
+        data,
+      };
 
-    try {
-      const fetch = await axios(config);
-      const authData = fetch.data;
-      window.localStorage.setItem('token', authData.token);
-      saveToken(authData.token);
-
-      const result = jwtDecode(authData.token);
-      getUser(result);
-      window.location.href = '/main';
-    } catch (error) {
-      throw new Error(error);
+      try {
+        const fetch = await axios(config);
+        const authData = fetch.data;
+        window.localStorage.setItem('token', authData.token);
+        saveToken(authData.token);
+        const result = jwtDecode(authData.token);
+        getUser(result);
+        window.location.href = '/main';
+      } catch (error) {
+        throw new Error(error);
+      }
     }
   }
 
@@ -52,6 +62,7 @@ function LoginPage(props) {
         </div>
 
         <form onSubmit={handleSubmit}>
+          {emailError && <p className="text-red-600">Please enter your email</p>}
           <input
             placeholder="Please enter your email"
             type="email"
@@ -59,6 +70,7 @@ function LoginPage(props) {
             onChange={handleChange}
             className="w-full p-2 text-primary border rounded-full text-center outline-none text-sm transition duration-150 ease-in-out mb-6 focus:ring-2 ring-yellow-500"
           />
+          {passwordError && <p className="text-red-600">Please enter your password</p>}
           <input
             placeholder="Password"
             type="password"
