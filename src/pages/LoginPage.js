@@ -15,7 +15,6 @@ function LoginPage(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     const { saveToken, getUser } = props;
-    console.log(data);
     const config = {
       method: 'post',
       url: `${baseUrl}/login`,
