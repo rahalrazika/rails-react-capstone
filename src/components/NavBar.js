@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import user from '../assets/user.png';
+import Logout from './Logout';
 
 function NavBar() {
   return (
@@ -37,9 +38,11 @@ function NavBar() {
           </Link>
         </nav>
         <div className="py-52 text-gray-500 ">
-          <p className="border-t-2 border-gray-300 py-4 ">logout</p>
-          <p>help</p>
+          <div className="rounded transition duration-100  hover:bg-red-300">
+            <Logout />
+          </div>
 
+          <p>help</p>
         </div>
       </div>
     </div>

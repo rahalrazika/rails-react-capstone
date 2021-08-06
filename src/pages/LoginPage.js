@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 import baseUrl from '../api/baseUrl';
 import { saveToken, getUser } from '../redux/actions';
 
 function LoginPage(props) {
+  const history = useHistory();
   const [data, setData] = useState({ email: '', password: '' });
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -19,11 +21,13 @@ function LoginPage(props) {
     if (!data.email && !data.password) {
       setEmailError('email');
       setPasswordError('password');
-    } else if (!emailError) {
+    } else if (!data.email) {
       setEmailError('email');
-    } else if (!passwordError) {
+    } else if (!data.password) {
       setPasswordError('password');
     } else {
+      setEmailError('');
+      setPasswordError('');
       const { saveToken, getUser } = props;
       const config = {
         method: 'post',
@@ -39,10 +43,11 @@ function LoginPage(props) {
         const fetch = await axios(config);
         const authData = fetch.data;
         window.localStorage.setItem('token', authData.token);
+        window.localStorage.setItem('user', JSON.stringify(authData.user));
         saveToken(authData.token);
         const result = jwtDecode(authData.token);
         getUser(result);
-        window.location.href = '/main';
+        history.push('/main');
       } catch (error) {
         throw new Error(error);
       }
@@ -62,7 +67,9 @@ function LoginPage(props) {
         </div>
 
         <form onSubmit={handleSubmit}>
-          {emailError && <p className="text-red-600">Please enter your email</p>}
+          {emailError && (
+            <p className="text-red-600">Please enter your email</p>
+          )}
           <input
             placeholder="Please enter your email"
             type="email"
@@ -70,7 +77,9 @@ function LoginPage(props) {
             onChange={handleChange}
             className="w-full p-2 text-primary border rounded-full text-center outline-none text-sm transition duration-150 ease-in-out mb-6 focus:ring-2 ring-yellow-500"
           />
-          {passwordError && <p className="text-red-600">Please enter your password</p>}
+          {passwordError && (
+            <p className="text-red-600">Please enter your password</p>
+          )}
           <input
             placeholder="Password"
             type="password"
