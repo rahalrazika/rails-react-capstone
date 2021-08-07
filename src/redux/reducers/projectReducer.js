@@ -1,13 +1,14 @@
 import * as types from '../actions/actionType';
 
 const initialState = {
-  project: [],
+  projects: [],
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.ALL_PROJECTS:
-      return { ...state, project: payload };
+      return { ...state, projects: payload };
+
     default:
       return state;
   }
