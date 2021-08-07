@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ProjectLink from '../components/ProjectLink';
 import fetchProjects from '../redux/actions/project';
+import Loading from '../components/Loading';
 
 const MainPage = ({ fetchProjects, projects }) => {
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     fetchProjects(window.localStorage.getItem('token'));
+    setLoading(true);
   }, []);
   const projectList = (
     <div>
       <>
-        {projects.map((project) => (
+        { loading ? projects.map((project) => (
           <ProjectLink key={project.id} projectData={project} id={project.id} />
-        ))}
+        )) : <Loading />}
       </>
     </div>
   );
