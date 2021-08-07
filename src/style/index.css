@@ -20,6 +20,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -65,7 +66,10 @@ code {
   margin-top: -6rem;
 }
  
-
-.rec .rec-dot {
+/* .rec .rec-carousel {
+  width: 50vw;
+  height:50vh;
+} */
+/* .rec .rec-dot {
   visibility: hidden;
-}
+} */

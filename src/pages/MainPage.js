@@ -45,10 +45,9 @@ const MainPage = ({ fetchProjects, projects }) => {
     </div>
   );
   return (
-    <div className="relative min-h-screen flex">
-      <div className="flex-1 p-10">
-        <div className="flex-1 p-10">{projectList}</div>
-      </div>
+    <div className="flex-1 p-10 overflow-hidden">
+      <h1 className="text-yellow-400 text-2xl font-semibold uppercase">new Projects</h1>
+      <div>{projectList}</div>
     </div>
   );
 };

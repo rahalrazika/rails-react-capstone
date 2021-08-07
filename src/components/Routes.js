@@ -15,14 +15,7 @@ function Routes() {
       <Route exact path="/" component={HomePage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/signup" component={SignUpPage} />
-      <Route
-        path="/project/:id"
-        render={() => (
-          <NavLayout>
-            <ProjectDetail />
-          </NavLayout>
-        )}
-      />
+      <Route path="/project/:id" component={ProjectDetail} />
       <Route
         path="/main"
         render={() => (
