@@ -21,7 +21,9 @@ const Header = () => (
     ) : (
       <div className="font-semibold text-gray-700 flex justify-around mr-10 align-middle ">
         <div className="p-2 uppercase nav-links flex align-middle ">
-          {JSON.parse(window.localStorage.getItem('user')).username}
+          <Link to="/main">
+            {JSON.parse(window.localStorage.getItem('user')).username}
+          </Link>
         </div>
         <div className="log">
           <Logout />
