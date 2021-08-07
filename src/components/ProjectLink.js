@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BsHeart, BsHeartFill } from 'react-icons/all';
-import port from '../assets/por1.png';
+import port from '../assets/por.png';
 
 const ProjectLink = ({ projectData, id }) => {
   const { name, price } = projectData;

@@ -32,6 +32,7 @@ code {
     monospace;
 }
 
+
 .orange-color {
   color: orangered;
 }
@@ -62,4 +63,9 @@ code {
   margin: 0 auto;
   width: 28rem;
   margin-top: -6rem;
+}
+ 
+
+.rec .rec-dot {
+  visibility: hidden;
 }
