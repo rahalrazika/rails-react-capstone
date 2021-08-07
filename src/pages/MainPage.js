@@ -8,8 +8,6 @@ const MainPage = ({ fetchProjects, projects }) => {
   useEffect(() => {
     fetchProjects(window.localStorage.getItem('token'));
   }, []);
-
-  console.log(projects);
   const projectList = (
     <div>
       <>
@@ -32,12 +30,5 @@ MainPage.propTypes = {
 const mapStateToProps = (state) => ({
   projects: state.projectReducer.projects,
 });
-
-/* const mapStateToProps = (state) => {
-  console.log();
-  return {
-    projects: state.projectReducer.projects,
-  };
-}; */
 
 export default connect(mapStateToProps, { fetchProjects })(MainPage);

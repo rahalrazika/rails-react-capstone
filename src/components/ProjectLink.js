@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -6,7 +5,6 @@ import { BsHeart, BsHeartFill } from 'react-icons/all';
 import port from '../assets/por1.png';
 
 const ProjectLink = ({ projectData, id }) => {
-  console.log(projectData);
   const { name, price } = projectData;
   return (
     <Link className="link" to={`/main/${projectData.id}`}>
@@ -43,6 +41,7 @@ const ProjectLink = ({ projectData, id }) => {
   );
 };
 ProjectLink.propTypes = {
+  id: PropTypes.string.isRequired,
   projectData: PropTypes.instanceOf(Object),
 };
 
