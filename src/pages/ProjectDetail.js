@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BsHeart, BsHeartFill, AiOutlineArrowLeft } from 'react-icons/all';
-// import port from '../assets/por.png';
 import port2 from '../assets/proj.jpg';
-// import port2 from '../assets/por3.jpg';
 import user from '../assets/user.png';
 
 function ProjectDetail() {
   return (
     <div className="w-full h-screen">
       <div className="bg-gray-100 h-7  flex ">
-        <AiOutlineArrowLeft className="text-2xl" />
+        <Link to="/main">
+          <AiOutlineArrowLeft className="text-2xl" />
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:h-screen sm:px-8 sm:py-12 sm:gap-x-8 md:py-16">
         <div className="relative text-yellow-700 flex justify-between z-10 col-start-1 row-start-1 px-4 pt-40 pb-3 bg-gradient-to-t from-black sm:bg-none">
@@ -51,7 +52,7 @@ function ProjectDetail() {
             <img
               src={port2}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover bg-gray-100 sm:rounded-lg "
+              className="absolute inset-0 w-full h-full object-fill bg-gray-100 sm:rounded-lg "
             />
           </div>
         </div>

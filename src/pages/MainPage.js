@@ -45,7 +45,7 @@ const MainPage = ({ fetchProjects, projects }) => {
     </div>
   );
   return (
-    <div className="flex-1 p-10 overflow-hidden">
+    <div className="flex-1 p-10 main-page ">
       <h1 className="text-yellow-400 text-2xl font-semibold uppercase">new Projects</h1>
       <div>{projectList}</div>
     </div>
