@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   margin: 0;
   font-family:
@@ -31,7 +30,6 @@ code {
     'Courier New',
     monospace;
 }
-
 
 .orange-color {
   color: orangered;
@@ -64,6 +62,7 @@ code {
   width: 28rem;
   margin-top: -6rem;
 }
+
 .main-page {
   overflow: hidden;
 }
