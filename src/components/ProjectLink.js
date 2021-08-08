@@ -1,30 +1,36 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BsHeart, BsHeartFill } from 'react-icons/all';
 import port from '../assets/por.png';
 
-const ProjectLink = ({ projectData, id }) => {
+const ProjectLink = (props) => {
+  const { projectData, id } = props;
   const { name, price } = projectData;
+
   return (
-    <Link className="link" to={`/main/${projectData.id}`}>
+    <Link
+      className="hover:link hover:cursor-pointer"
+      to={{
+        pathname: `/project/${id}`,
+        state: { data: projectData },
+      }}
+    >
       <div className="relative h-screen flex">
         <div className="container flex justify-center">
           <div className="w-full mt-20 px-7">
             <div className="bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg">
               <img className="rounded-t-lg" src={port} alt="" />
               <div className="py-6 px-8 rounded-lg bg-white">
-                <Link to={`/project/${id}`}>
-                  <h1 className="text-gray-700 font-bold text-2xl mb-3 capitalize rounded transition duration-100  hover:bg-yellow-400 hover:text-white hover:cursor-pointer ">
+                <div>
+                  <h1 className="  text-gray-700 font-bold text-2xl mb-3 capitalize rounded transition duration-100  ">
                     {name}
                   </h1>
-                </Link>
+                </div>
 
                 <div className="mt-6 py-2 px-4 text-gray-800 font-bold ">
-                  <span className="text-md">
-                    $
-                    {price}
-                  </span>
+                  <span className="text-md">${price}</span>
                 </div>
               </div>
               <div className=" top-2 right-2 py-2 px-4 bg-white rounded-lg">
@@ -39,7 +45,7 @@ const ProjectLink = ({ projectData, id }) => {
   );
 };
 ProjectLink.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   projectData: PropTypes.instanceOf(Object),
 };
 

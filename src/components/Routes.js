@@ -17,6 +17,7 @@ function Routes() {
       <Route path="/signup" component={SignUpPage} />
       <Route path="/project/:id" component={ProjectDetail} />
       <Route
+        exact
         path="/main"
         render={() => (
           <NavLayout>
