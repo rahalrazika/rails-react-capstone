@@ -1,17 +1,27 @@
 import axios from 'axios';
 import * as types from './actionType';
-import Config from '../../api/Config';
+import baseUrl from '../../api/baseUrl';
 
 const allProjects = (payload) => ({
   type: types.ALL_PROJECTS,
   payload,
 });
 
-const fetchProjects = () => async (dispatch) => {
+const fetchProjects = (token) => async (dispatch) => {
   let projects = [];
-
+  const config = {
+    method: 'get',
+    url: `${baseUrl}/projects`,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  console.log('ghghgh');
+  console.log(token, baseUrl);
   try {
-    projects = await axios(Config());
+    projects = await axios(config);
+    console.log(projects);
   } catch (error) {
     throw new Error(error);
   }

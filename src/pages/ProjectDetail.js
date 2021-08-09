@@ -2,13 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BsHeart, BsHeartFill, AiOutlineArrowLeft } from 'react-icons/all';
-
+import axios from 'axios';
 import port2 from '../assets/proj.jpg';
 import user from '../assets/user.png';
+import baseUrl from '../api/baseUrl';
 
-function ProjectDetail({ history }) {
+function ProjectDetail(props) {
+  const { history } = props;
   const { name, description, price } = history.location.state.data;
+  async function addFavourite(e) {
+    e.preventDefault();
+    const userId = JSON.parse(window.localStorage.getItem('user')).id;
+    const projectId = props.match.params.id;
+    const token = window.localStorage.getItem('token');
+    const config = {
+      method: 'post',
+      url: `${baseUrl}/favourites`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        user_id: userId,
+        project_id: projectId,
+      },
+    };
 
+    try {
+      await axios(config);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   return (
     <div className="w-full h-screen">
       <div className="bg-gray-100 h-7  flex ">
@@ -24,6 +49,7 @@ function ProjectDetail({ history }) {
         </div>
         <div className="col-start-1 row-start-2 px-4 sm:pb-16">
           <button
+            onClick={addFavourite}
             type="button"
             className="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4"
           >
@@ -32,10 +58,7 @@ function ProjectDetail({ history }) {
           </button>
         </div>
         <div className="col-start-1 row-start-3 space-y-3 px-4">
-          <h3 className="text-center font-semibold text-xl">
-            {price}
-            $
-          </h3>
+          <h3 className="text-center font-semibold text-xl">{price}$</h3>
           <p className="flex items-center text-black text-sm font-medium">
             <img
               src={user}
@@ -67,9 +90,11 @@ function ProjectDetail({ history }) {
 }
 
 ProjectDetail.propTypes = {
-  history: PropTypes.func,
+  history: PropTypes.instanceOf(Object),
+  match: PropTypes.instanceOf(Object),
 };
 ProjectDetail.defaultProps = {
-  history: null,
+  history: {},
+  match: {},
 };
 export default ProjectDetail;
