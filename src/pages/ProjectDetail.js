@@ -58,7 +58,10 @@ function ProjectDetail(props) {
           </button>
         </div>
         <div className="col-start-1 row-start-3 space-y-3 px-4">
-          <h3 className="text-center font-semibold text-xl">{price}$</h3>
+          <h3 className="text-center font-semibold text-xl">
+            {price}
+            $
+          </h3>
           <p className="flex items-center text-black text-sm font-medium">
             <img
               src={user}

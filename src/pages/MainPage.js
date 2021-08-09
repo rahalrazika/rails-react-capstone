@@ -22,7 +22,6 @@ const MainPage = ({ fetchProjects, projects }) => {
   ];
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log(window.localStorage.getItem('token'));
     fetchProjects(window.localStorage.getItem('token'));
     setLoading(true);
   }, []);

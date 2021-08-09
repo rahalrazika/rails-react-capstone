@@ -17,11 +17,8 @@ const fetchProjects = (token) => async (dispatch) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  console.log('ghghgh');
-  console.log(token, baseUrl);
   try {
     projects = await axios(config);
-    console.log(projects);
   } catch (error) {
     throw new Error(error);
   }
