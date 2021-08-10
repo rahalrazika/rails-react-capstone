@@ -1,4 +1,8 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BsHeart, BsHeartFill, AiOutlineArrowLeft } from 'react-icons/all';
@@ -10,10 +14,14 @@ import baseUrl from '../api/baseUrl';
 function ProjectDetail(props) {
   const { history } = props;
   const { name, description, price } = history.location.state.data;
+
+  const userId = JSON.parse(window.localStorage.getItem('user')).id;
+  const token = window.localStorage.getItem('token');
+  const projectId = props.match.params.id;
+  const favourites = useSelector((state) => state.favouriteReducer.favourites);
   async function addFavourite(e) {
     e.preventDefault();
-    const userId = JSON.parse(window.localStorage.getItem('user')).id;
-    const projectId = props.match.params.id;
+
     const token = window.localStorage.getItem('token');
     const config = {
       method: 'post',
@@ -25,6 +33,45 @@ function ProjectDetail(props) {
       data: {
         user_id: userId,
         project_id: projectId,
+      },
+    };
+
+    try {
+      await axios(config);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  const renderHearts = () => {
+    const isFavourite = favourites.find(
+      (el) => `${el.project_id}` === `${projectId}`,
+    );
+
+    return (
+      <div className="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4">
+        {isFavourite ? (
+          <BsHeartFill className="text-yellow-300" />
+        ) : (
+          <BsHeart onClick={addFavourite} />
+        )}
+      </div>
+    );
+  };
+
+  async function addPartnerships(e) {
+    e.preventDefault();
+    const config = {
+      method: 'post',
+      url: `${baseUrl}/partnerships`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        user_id: userId,
+        project_id: projectId,
+        date: new Date(),
       },
     };
 
@@ -48,20 +95,10 @@ function ProjectDetail(props) {
           </h2>
         </div>
         <div className="col-start-1 row-start-2 px-4 sm:pb-16">
-          <button
-            onClick={addFavourite}
-            type="button"
-            className="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4"
-          >
-            <BsHeart />
-            <BsHeartFill className="text-yellow-300" />
-          </button>
+          {renderHearts()}
         </div>
         <div className="col-start-1 row-start-3 space-y-3 px-4">
-          <h3 className="text-center font-semibold text-xl">
-            {price}
-            $
-          </h3>
+          <h3 className="text-center font-semibold text-xl">{price}$</h3>
           <p className="flex items-center text-black text-sm font-medium">
             <img
               src={user}
@@ -72,6 +109,7 @@ function ProjectDetail(props) {
           </p>
           <p>{description}</p>
           <button
+            onClick={addPartnerships}
             type="button"
             className="bg-yellow-100  text-yellow-700 text-base font-semibold px-6 mt-11 py-2 rounded-lg"
           >

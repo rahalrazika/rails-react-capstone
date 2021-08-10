@@ -40,8 +40,9 @@ function LoginPage(props) {
       };
 
       try {
-        const fetch = await axios(config);
-        const authData = fetch.data;
+        const fetchUser = await axios(config);
+
+        const authData = fetchUser.data;
         window.localStorage.setItem('token', authData.token);
         window.localStorage.setItem('user', JSON.stringify(authData.user));
         saveToken(authData.token);

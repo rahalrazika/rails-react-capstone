@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { BsHeart, BsHeartFill } from 'react-icons/all';
 import port from '../assets/por.png';
 
 const ProjectLink = (props) => {
@@ -32,10 +31,6 @@ const ProjectLink = (props) => {
                 <div className="mt-6 py-2 px-4 text-gray-800 font-bold ">
                   <span className="text-md">${price}</span>
                 </div>
-              </div>
-              <div className=" top-2 right-2 py-2 px-4 bg-white rounded-lg">
-                <BsHeart />
-                <BsHeartFill className="text-yellow-300" />
               </div>
             </div>
           </div>
