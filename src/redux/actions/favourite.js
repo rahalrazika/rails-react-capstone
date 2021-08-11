@@ -26,12 +26,9 @@ export const getFavourites = (token) => async (dispatch) => {
   return dispatch(allFavourites(favourites.data));
 };
 
-const addFavouriteToRedux = (payload) => {
-  console.log(payload);
-  return {
-    type: types.ADD_FAVOURITE,
-    payload,
-  };
-};
+const addFavouriteToRedux = (payload) => ({
+  type: types.ADD_FAVOURITE,
+  payload,
+});
 
 export default addFavouriteToRedux;

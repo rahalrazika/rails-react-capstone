@@ -1,9 +1,3 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -15,7 +9,7 @@ import baseUrl from '../api/baseUrl';
 import addFavouriteToRedux from '../redux/actions/favourite';
 
 function ProjectDetail({
-  history, match, favourites, addFavouriteToRedux
+  history, match, favourites, addFavouriteToRedux,
 }) {
   const { name, description, price } = history.location.state.data;
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
@@ -52,7 +46,7 @@ function ProjectDetail({
 
   const renderHearts = (favourites) => {
     const isFavourite = favourites.find(
-      (el) => `${el.project_id}` === `${projectId}`
+      (el) => `${el.project_id}` === `${projectId}`,
     );
 
     return (
@@ -83,7 +77,7 @@ function ProjectDetail({
     };
 
     try {
-      const data = await axios(config);
+      await axios(config);
     } catch (error) {
       throw new Error(error);
     }
@@ -105,7 +99,10 @@ function ProjectDetail({
           {renderHearts(favourites)}
         </div>
         <div className="col-start-1 row-start-3 space-y-3 px-4">
-          <h3 className="text-center font-semibold text-xl">{price}$</h3>
+          <h3 className="text-center font-semibold text-xl">
+            {price}
+            $
+          </h3>
           <p className="flex items-center text-black text-sm font-medium">
             <img
               src={user}
@@ -140,9 +137,12 @@ function ProjectDetail({
 ProjectDetail.propTypes = {
   history: PropTypes.instanceOf(Object),
   match: PropTypes.instanceOf(Object),
+  favourites: PropTypes.instanceOf(Array),
+  addFavouriteToRedux: PropTypes.func.isRequired,
 };
 ProjectDetail.defaultProps = {
   history: {},
   match: {},
+  favourites: [],
 };
 export default connect(null, { addFavouriteToRedux })(ProjectDetail);

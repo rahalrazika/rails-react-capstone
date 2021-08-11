@@ -12,8 +12,6 @@ import ProjectDetail from '../pages/ProjectDetail';
 import NavLayout from '../layouts/navLayout';
 
 function Routes() {
-  // get the favourites from redux
-  // pass the data to project details
   const favourites = useSelector((state) => state.favouriteReducer.favourites);
 
   return (
