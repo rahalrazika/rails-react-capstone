@@ -7,7 +7,7 @@ const allFavourites = (payload) => ({
   payload,
 });
 
-const getFavourites = (token) => async (dispatch) => {
+export const getFavourites = (token) => async (dispatch) => {
   let favourites = [];
   const config = {
     method: 'get',
@@ -25,4 +25,13 @@ const getFavourites = (token) => async (dispatch) => {
 
   return dispatch(allFavourites(favourites.data));
 };
-export default getFavourites;
+
+const addFavouriteToRedux = (payload) => {
+  console.log(payload);
+  return {
+    type: types.ADD_FAVOURITE,
+    payload,
+  };
+};
+
+export default addFavouriteToRedux;

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ProjectLink from '../components/ProjectLink';
 import fetchProjects from '../redux/actions/project';
 import Loading from '../components/Loading';
-import getFavourites from '../redux/actions/favourite';
+import { getFavourites } from '../redux/actions/favourite';
 
 const MainPage = ({ fetchProjects, getFavourites, projects }) => {
   const breakPoints = [
@@ -48,7 +48,9 @@ const MainPage = ({ fetchProjects, getFavourites, projects }) => {
   );
   return (
     <div className="flex-1 p-10 main-page ">
-      <h1 className="text-yellow-400 text-2xl font-semibold uppercase">new Projects</h1>
+      <h1 className="text-yellow-400 text-2xl font-semibold uppercase">
+        new Projects
+      </h1>
       <div>{projectList}</div>
     </div>
   );
@@ -62,4 +64,6 @@ const mapStateToProps = (state) => ({
   projects: state.projectReducer.projects,
 });
 
-export default connect(mapStateToProps, { fetchProjects, getFavourites })(MainPage);
+export default connect(mapStateToProps, { fetchProjects, getFavourites })(
+  MainPage,
+);

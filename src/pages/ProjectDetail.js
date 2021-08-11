@@ -1,8 +1,10 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BsHeart, BsHeartFill, AiOutlineArrowLeft } from 'react-icons/all';
@@ -10,15 +12,16 @@ import axios from 'axios';
 import port2 from '../assets/proj.jpg';
 import user from '../assets/user.png';
 import baseUrl from '../api/baseUrl';
+import addFavouriteToRedux from '../redux/actions/favourite';
 
-function ProjectDetail(props) {
-  const { history } = props;
+function ProjectDetail({
+  history, match, favourites, addFavouriteToRedux
+}) {
   const { name, description, price } = history.location.state.data;
-
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
   const token = window.localStorage.getItem('token');
-  const projectId = props.match.params.id;
-  const favourites = useSelector((state) => state.favouriteReducer.favourites);
+  const projectId = match.params.id;
+
   async function addFavourite(e) {
     e.preventDefault();
 
@@ -38,14 +41,18 @@ function ProjectDetail(props) {
 
     try {
       await axios(config);
+      addFavouriteToRedux({
+        user_id: userId,
+        project_id: projectId,
+      });
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  const renderHearts = () => {
+  const renderHearts = (favourites) => {
     const isFavourite = favourites.find(
-      (el) => `${el.project_id}` === `${projectId}`,
+      (el) => `${el.project_id}` === `${projectId}`
     );
 
     return (
@@ -76,7 +83,7 @@ function ProjectDetail(props) {
     };
 
     try {
-      await axios(config);
+      const data = await axios(config);
     } catch (error) {
       throw new Error(error);
     }
@@ -95,7 +102,7 @@ function ProjectDetail(props) {
           </h2>
         </div>
         <div className="col-start-1 row-start-2 px-4 sm:pb-16">
-          {renderHearts()}
+          {renderHearts(favourites)}
         </div>
         <div className="col-start-1 row-start-3 space-y-3 px-4">
           <h3 className="text-center font-semibold text-xl">{price}$</h3>
@@ -138,4 +145,4 @@ ProjectDetail.defaultProps = {
   history: {},
   match: {},
 };
-export default ProjectDetail;
+export default connect(null, { addFavouriteToRedux })(ProjectDetail);
