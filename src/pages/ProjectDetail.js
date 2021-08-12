@@ -22,8 +22,9 @@ function ProjectDetail({
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
   const token = window.localStorage.getItem('token');
   const projectId = match.params.id;
-  const getId = favourites.find((item) => `${item.project_id}` === `${projectId}`);
-  console.log(removeFavouriteFromRedux);
+  const getId = favourites.find(
+    (item) => `${item.project_id}` === `${projectId}`,
+  );
   async function addFavourite(e) {
     e.preventDefault();
 
@@ -52,11 +53,11 @@ function ProjectDetail({
     }
   }
 
-  async function destroyFavourite(id) {
+  async function destroyFavourite() {
     const token = window.localStorage.getItem('token');
     const config = {
       method: 'DELETE',
-      url: `${baseUrl}/favourites/${id}`,
+      url: `${baseUrl}/favourites/${getId.id}`,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -64,7 +65,7 @@ function ProjectDetail({
     };
     try {
       await axios(config);
-      removeFavouriteFromRedux(id);
+      removeFavouriteFromRedux(getId.id);
     } catch (error) {
       throw new Error(error);
     }
@@ -77,7 +78,7 @@ function ProjectDetail({
     return (
       <div className="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4">
         {isFavourite ? (
-          <BsHeartFill onClick={() => console.log(destroyFavourite(getId.id))} className="text-yellow-300" />
+          <BsHeartFill onClick={destroyFavourite} className="text-yellow-300" />
         ) : (
           <BsHeart onClick={addFavourite} />
         )}
