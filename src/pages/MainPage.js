@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Carousel from 'react-elastic-carousel';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import ProjectLink from '../components/ProjectLink';
 import fetchProjects from '../redux/actions/project';
 import Loading from '../components/Loading';
@@ -22,30 +23,37 @@ const MainPage = ({ fetchProjects, getFavourites, projects }) => {
     { width: 1750, itemsToShow: 3 },
   ];
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    fetchProjects(window.localStorage.getItem('token'));
-    getFavourites(window.localStorage.getItem('token'));
-    setLoading(true);
-  }, []);
-  const projectList = (
-    <div>
-      <>
-        {loading ? (
-          <Carousel className="slide" breakPoints={breakPoints}>
-            {projects.map((project) => (
-              <ProjectLink
-                key={project.id}
-                projectData={project}
-                id={project.id}
-              />
-            ))}
-          </Carousel>
-        ) : (
-          <Loading />
-        )}
-      </>
-    </div>
-  );
+
+  let projectList;
+  if (!window.localStorage.getItem('token')) {
+    useHistory().push('/login');
+  } else {
+    useEffect(() => {
+      fetchProjects(window.localStorage.getItem('token'));
+      getFavourites(window.localStorage.getItem('token'));
+      setLoading(true);
+    }, []);
+    projectList = (
+      <div>
+        <>
+          {loading ? (
+            <Carousel className="slide" breakPoints={breakPoints}>
+              {projects.map((project) => (
+                <ProjectLink
+                  key={project.id}
+                  projectData={project}
+                  id={project.id}
+                />
+              ))}
+            </Carousel>
+          ) : (
+            <Loading />
+          )}
+        </>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 p-10 main-page ">
       <h1 className="text-yellow-400 text-2xl font-semibold uppercase">

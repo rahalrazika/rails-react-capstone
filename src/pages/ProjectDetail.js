@@ -6,16 +6,24 @@ import axios from 'axios';
 import port2 from '../assets/proj.jpg';
 import user from '../assets/user.png';
 import baseUrl from '../api/baseUrl';
-import addFavouriteToRedux from '../redux/actions/favourite';
+import {
+  addFavouriteToRedux,
+  removeFavouriteFromRedux,
+} from '../redux/actions/favourite';
 
 function ProjectDetail({
-  history, match, favourites, addFavouriteToRedux,
+  history,
+  match,
+  favourites,
+  addFavouriteToRedux,
+  removeFavouriteFromRedux,
 }) {
   const { name, description, price } = history.location.state.data;
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
   const token = window.localStorage.getItem('token');
   const projectId = match.params.id;
-
+  const getId = favourites.find((item) => `${item.project_id}` === `${projectId}`);
+  console.log(removeFavouriteFromRedux);
   async function addFavourite(e) {
     e.preventDefault();
 
@@ -44,6 +52,23 @@ function ProjectDetail({
     }
   }
 
+  async function destroyFavourite(id) {
+    const token = window.localStorage.getItem('token');
+    const config = {
+      method: 'DELETE',
+      url: `${baseUrl}/favourites/${id}`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      await axios(config);
+      removeFavouriteFromRedux(id);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   const renderHearts = (favourites) => {
     const isFavourite = favourites.find(
       (el) => `${el.project_id}` === `${projectId}`,
@@ -52,7 +77,7 @@ function ProjectDetail({
     return (
       <div className="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4">
         {isFavourite ? (
-          <BsHeartFill className="text-yellow-300" />
+          <BsHeartFill onClick={() => console.log(destroyFavourite(getId.id))} className="text-yellow-300" />
         ) : (
           <BsHeart onClick={addFavourite} />
         )}
@@ -139,10 +164,13 @@ ProjectDetail.propTypes = {
   match: PropTypes.instanceOf(Object),
   favourites: PropTypes.instanceOf(Array),
   addFavouriteToRedux: PropTypes.func.isRequired,
+  removeFavouriteFromRedux: PropTypes.func.isRequired,
 };
 ProjectDetail.defaultProps = {
   history: {},
   match: {},
   favourites: [],
 };
-export default connect(null, { addFavouriteToRedux })(ProjectDetail);
+export default connect(null, { addFavouriteToRedux, removeFavouriteFromRedux })(
+  ProjectDetail,
+);

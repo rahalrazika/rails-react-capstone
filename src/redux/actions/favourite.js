@@ -31,4 +31,9 @@ const addFavouriteToRedux = (payload) => ({
   payload,
 });
 
-export default addFavouriteToRedux;
+const removeFavouriteFromRedux = (payload) => ({
+  type: types.REMOVE_FAVOURITE,
+  payload,
+});
+
+export { addFavouriteToRedux, removeFavouriteFromRedux };
