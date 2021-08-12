@@ -12,8 +12,7 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, favourites: [...state.favourites, payload] };
     case types.REMOVE_FAVOURITE:
       return {
-        ...state,
-        favourites: state.favourites.filter((e) => e !== payload),
+        ...state.favourites.filter((e) => e !== payload),
       };
 
     default:

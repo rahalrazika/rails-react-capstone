@@ -1,13 +1,7 @@
 import React from 'react';
-// import { connect, useSelector } from 'react-redux';
-
 // import { getFavourites } from '../redux/actions/favourite';
 
 function Fav() {
-/*   const favouriteList = useSelector((state) => state.data.favourites);
-
-  console.log(favouriteList); */
-
   return (
     <div className="flex-1 min-h-screen flex flex-col items-center justify-center">
       <div className=" mx-auto px-20 mb-9">
@@ -35,4 +29,4 @@ const mapStateToProps = (state) => ({
   favourites: state.favouriteReducer.favourites,
 });
  */
-export default (Fav);
+export default Fav;

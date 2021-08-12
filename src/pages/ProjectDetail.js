@@ -111,8 +111,8 @@ function ProjectDetail({
   return (
     <div className="w-full h-screen">
       <div className="bg-gray-100 h-7  flex ">
-        <Link to="/main">
-          <AiOutlineArrowLeft className="text-2xl" />
+        <Link to="/main" className="">
+          <AiOutlineArrowLeft className="text-2xl " />
         </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 sm:h-screen sm:px-8 sm:py-12 sm:gap-x-8 md:py-16">
