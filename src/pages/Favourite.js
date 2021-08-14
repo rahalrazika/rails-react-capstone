@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -20,8 +19,15 @@ const Fav = ({
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
   const favouriteProjects = favourites.filter((el) => el.user_id === userId);
 
-  const projectsToShow = projects.filter((el) => favouriteProjects.find((favEl) => favEl.project_id === el.id));
+  const projectsToShow = projects.filter(
+    (el) => favouriteProjects.find((favEl) => favEl.project_id === el.id),
+  );
 
+  const handleRemove = (id) => {
+    /* const deletedProject = projectsToShow.filter((project) => project.id !== id);
+    removeFavouriteFromRedux(deletedProject); */
+    console.log(id);
+  };
   useEffect(() => {
     fetchProjects(window.localStorage.getItem('token'));
     getFavourites(window.localStorage.getItem('token'));
@@ -35,6 +41,7 @@ const Fav = ({
               {el.name}
             </h1>
             <button
+              onClick={() => handleRemove(el.id)}
               type="button"
               className="py-2 px-4 mt-8 bg-red-500 text-white rounded-md shadow-xl"
             >

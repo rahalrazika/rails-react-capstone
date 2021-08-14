@@ -19,11 +19,10 @@ export const getFavourites = (token) => async (dispatch) => {
   };
   try {
     favourites = await axios(config);
+    dispatch(allFavourites(favourites.data));
   } catch (error) {
     throw new Error(error);
   }
-
-  return dispatch(allFavourites(favourites.data));
 };
 
 const addFavouriteToRedux = (payload) => ({
