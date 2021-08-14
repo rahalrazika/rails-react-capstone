@@ -11,6 +11,7 @@ import {
   addFavouriteToRedux,
   removeFavouriteFromRedux,
 } from '../redux/actions/favourite';
+import { addPartnershipToRedux } from '../redux/actions/partnership';
 
 const ProjectDetail = ({
   history,
@@ -18,6 +19,7 @@ const ProjectDetail = ({
   favourites,
   addFavouriteToRedux,
   removeFavouriteFromRedux,
+  addPartnershipToRedux,
 }) => {
   const { name, description, price } = history.location.state.data;
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
@@ -26,6 +28,7 @@ const ProjectDetail = ({
   const getId = favourites.find(
     (item) => `${item.project_id}` === `${projectId}`,
   );
+  console.log(getId);
   async function addFavourite(e) {
     e.preventDefault();
 
@@ -105,6 +108,11 @@ const ProjectDetail = ({
 
     try {
       await axios(config);
+      addPartnershipToRedux({
+        user_id: userId,
+        project_id: projectId,
+        date: new Date(),
+      });
     } catch (error) {
       throw new Error(error);
     }
@@ -166,6 +174,7 @@ ProjectDetail.propTypes = {
   match: PropTypes.instanceOf(Object),
   favourites: PropTypes.instanceOf(Array),
   addFavouriteToRedux: PropTypes.func.isRequired,
+  addPartnershipToRedux: PropTypes.func.isRequired,
   removeFavouriteFromRedux: PropTypes.func.isRequired,
 };
 ProjectDetail.defaultProps = {
@@ -173,6 +182,8 @@ ProjectDetail.defaultProps = {
   match: {},
   favourites: [],
 };
-export default connect(null, { addFavouriteToRedux, removeFavouriteFromRedux })(
+export default connect(null, {
+  addFavouriteToRedux, removeFavouriteFromRedux, addPartnershipToRedux,
+})(
   ProjectDetail,
 );

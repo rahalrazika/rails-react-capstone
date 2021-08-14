@@ -10,6 +10,10 @@ const destroyPartnership = (payload) => ({
   type: types.REMOVE_PARTNERSHIP,
   payload,
 });
+const addPartnershipToRedux = (payload) => ({
+  type: types.ADD_PARTNERSHIP,
+  payload,
+});
 
 export const getPartnerships = (token) => async (dispatch) => {
   let partnerships = [];
@@ -29,4 +33,4 @@ export const getPartnerships = (token) => async (dispatch) => {
   }
 };
 
-export { destroyPartnership };
+export { destroyPartnership, addPartnershipToRedux };

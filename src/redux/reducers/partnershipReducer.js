@@ -7,10 +7,14 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case types.PARTNERSHIP:
-      return { ...state, favourites: payload };
+      return { ...state, partnerships: payload };
+    case types.ADD_PARTNERSHIP:
+      return { ...state, partnerships: [...state.partnerships, payload] };
     case types.REMOVE_PARTNERSHIP:
       return {
-        ...state.favourites.filter((e) => e !== payload),
+        partnerships: [
+          ...state.partnerships.filter((e) => e !== payload),
+        ],
       };
 
     default:
