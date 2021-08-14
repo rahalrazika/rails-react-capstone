@@ -19,10 +19,9 @@ const fetchProjects = (token) => async (dispatch) => {
   };
   try {
     projects = await axios(config);
+    dispatch(allProjects(projects.data));
   } catch (error) {
     throw new Error(error);
   }
-
-  return dispatch(allProjects(projects.data));
 };
 export default fetchProjects;

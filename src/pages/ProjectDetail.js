@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -11,13 +12,13 @@ import {
   removeFavouriteFromRedux,
 } from '../redux/actions/favourite';
 
-function ProjectDetail({
+const ProjectDetail = ({
   history,
   match,
   favourites,
   addFavouriteToRedux,
   removeFavouriteFromRedux,
-}) {
+}) => {
   const { name, description, price } = history.location.state.data;
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
   const token = window.localStorage.getItem('token');
@@ -111,7 +112,7 @@ function ProjectDetail({
   return (
     <div className="w-full h-screen">
       <div className="bg-gray-100 h-7  flex ">
-        <Link to="/main" className="">
+        <Link to="/main" className="hover:text-yellow-500">
           <AiOutlineArrowLeft className="text-2xl " />
         </Link>
       </div>
@@ -141,7 +142,7 @@ function ProjectDetail({
           <button
             onClick={addPartnerships}
             type="button"
-            className="bg-yellow-100  text-yellow-700 text-base font-semibold px-6 mt-11 py-2 rounded-lg"
+            className="bg-yellow-100 hover:bg-yellow-400 hover:text-black  text-yellow-700 text-base font-semibold px-6 mt-11 py-2 rounded-lg"
           >
             Apply For partnership
           </button>
@@ -158,7 +159,7 @@ function ProjectDetail({
       </div>
     </div>
   );
-}
+};
 
 ProjectDetail.propTypes = {
   history: PropTypes.instanceOf(Object),
