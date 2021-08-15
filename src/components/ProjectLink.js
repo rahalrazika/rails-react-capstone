@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -29,7 +28,10 @@ const ProjectLink = (props) => {
                 </div>
 
                 <div className="mt-6 py-2 px-4 text-gray-800 font-bold ">
-                  <span className="text-md">${price}</span>
+                  <span className="text-md">
+                    $
+                    {price}
+                  </span>
                 </div>
               </div>
             </div>

@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable comma-dangle */
-/* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -56,7 +53,7 @@ const ProjectDetail = ({
 
   async function destroyFavourite() {
     const getId = favourites.find(
-      (item) => `${item.project_id}` === `${projectId}`
+      (item) => `${item.project_id}` === `${projectId}`,
     );
 
     const token = window.localStorage.getItem('token');
@@ -77,7 +74,7 @@ const ProjectDetail = ({
   }
   const renderHearts = (favourites) => {
     const isFavourite = favourites.find(
-      (el) => `${el.project_id}` === `${projectId}`
+      (el) => `${el.project_id}` === `${projectId}`,
     );
 
     return (
@@ -131,7 +128,10 @@ const ProjectDetail = ({
           {renderHearts(favourites)}
         </div>
         <div className="col-start-1 row-start-3 space-y-3 px-4">
-          <h3 className="text-center font-semibold text-xl">{price}$</h3>
+          <h3 className="text-center font-semibold text-xl">
+            {price}
+            $
+          </h3>
           <p className="flex items-center text-black text-sm font-medium">
             <img
               src={user}

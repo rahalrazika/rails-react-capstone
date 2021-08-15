@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -26,7 +25,6 @@ const Fav = ({
   );
 
   const deleteFromFavouritePage = async (el) => {
-    console.log(el);
     const getId = favourites.find(
       (item) => `${item.project_id}` === `${el.id}`,
     );
@@ -48,16 +46,9 @@ const Fav = ({
     }
   };
 
-  /*  const deletedProject = favourites.filter(
-    (item) => `${item.id}` === `${projects.id}`,
-
-  ); */
-  console.log(projectsToShow.id);
-
   useEffect(() => {
     fetchProjects(window.localStorage.getItem('token'));
     getFavourites(window.localStorage.getItem('token'));
-    // removeFavouriteFromRedux(deletedProject.id);
   }, []);
   return (
     <div className="flex-1 min-h-screen flex flex-col items-center justify-center">
@@ -97,8 +88,6 @@ const mapStateToProps = (state) => ({
   projects: state.projectReducer.projects,
 });
 
-/* const mapStateToProps = (state) => console.log(state.favouriteReducer.favourites);
- */
 export default connect(mapStateToProps, {
   fetchProjects,
   getFavourites,
