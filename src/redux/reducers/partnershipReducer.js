@@ -12,12 +12,8 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, partnerships: [...state.partnerships, payload] };
     case types.REMOVE_PARTNERSHIP:
       return {
-      /*   partnerships: [
-          ...state.partnerships.filter(
-            (partnerships) => partnerships !== payload,
-          ),
-        ], */
-        partnerships: state.partnerships.filter((el) => el !== payload),
+        ...state,
+        partnerships: state.partnerships.filter((el) => `${el.id}` !== `${payload}`),
 
       };
 

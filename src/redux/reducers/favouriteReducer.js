@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import * as types from '../actions/actionType';
 
 const initialState = {
@@ -12,9 +13,9 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, favourites: [...state.favourites, payload] };
     case types.REMOVE_FAVOURITE:
       return {
-        ...state.favourites.filter((e) => e !== payload),
+        ...state,
+        favourites: state.favourites.filter((el) => `${el.id}` !== `${payload}`),
       };
-
     default:
       return state;
   }

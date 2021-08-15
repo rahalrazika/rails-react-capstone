@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable comma-dangle */
 /* eslint-disable react/prop-types */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -25,9 +27,7 @@ const ProjectDetail = ({
   const userId = JSON.parse(window.localStorage.getItem('user')).id;
   const token = window.localStorage.getItem('token');
   const projectId = match.params.id;
-  const getId = favourites.find(
-    (item) => `${item.project_id}` === `${projectId}`,
-  );
+
   async function addFavourite(e) {
     e.preventDefault();
 
@@ -46,17 +46,19 @@ const ProjectDetail = ({
     };
 
     try {
-      await axios(config);
-      addFavouriteToRedux({
-        user_id: userId,
-        project_id: projectId,
-      });
+      const favProj = await axios(config);
+
+      addFavouriteToRedux(favProj.data);
     } catch (error) {
       throw new Error(error);
     }
   }
 
   async function destroyFavourite() {
+    const getId = favourites.find(
+      (item) => `${item.project_id}` === `${projectId}`
+    );
+
     const token = window.localStorage.getItem('token');
     const config = {
       method: 'DELETE',
@@ -75,7 +77,7 @@ const ProjectDetail = ({
   }
   const renderHearts = (favourites) => {
     const isFavourite = favourites.find(
-      (el) => `${el.project_id}` === `${projectId}`,
+      (el) => `${el.project_id}` === `${projectId}`
     );
 
     return (
@@ -106,12 +108,8 @@ const ProjectDetail = ({
     };
 
     try {
-      await axios(config);
-      addPartnershipToRedux({
-        user_id: userId,
-        project_id: projectId,
-        date: new Date(),
-      });
+      const partDate = await axios(config);
+      addPartnershipToRedux(partDate);
     } catch (error) {
       throw new Error(error);
     }
@@ -133,10 +131,7 @@ const ProjectDetail = ({
           {renderHearts(favourites)}
         </div>
         <div className="col-start-1 row-start-3 space-y-3 px-4">
-          <h3 className="text-center font-semibold text-xl">
-            {price}
-            $
-          </h3>
+          <h3 className="text-center font-semibold text-xl">{price}$</h3>
           <p className="flex items-center text-black text-sm font-medium">
             <img
               src={user}
@@ -182,7 +177,7 @@ ProjectDetail.defaultProps = {
   favourites: [],
 };
 export default connect(null, {
-  addFavouriteToRedux, removeFavouriteFromRedux, addPartnershipToRedux,
-})(
-  ProjectDetail,
-);
+  addFavouriteToRedux,
+  removeFavouriteFromRedux,
+  addPartnershipToRedux,
+})(ProjectDetail);

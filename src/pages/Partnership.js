@@ -34,7 +34,6 @@ const Partnership = ({
     (item) => `${item.project_id}`,
   );
 
-  console.log(partnerships.id);
   async function RemovePartnership() {
     const token = window.localStorage.getItem('token');
     const config = {
@@ -48,7 +47,6 @@ const Partnership = ({
     try {
       await axios(config);
       destroyPartnership(partnershipId.id);
-      window.location.reload();
     } catch (error) {
       throw new Error(error);
     }
