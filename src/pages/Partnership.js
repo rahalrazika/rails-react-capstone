@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -32,11 +30,16 @@ const Partnership = ({
     (el) => partnershipProjects.find((favEl) => favEl.project_id === el.id),
   );
 
-  async function RemovePartnership(id) {
+  const partnershipId = partnerships.find(
+    (item) => `${item.project_id}`,
+  );
+
+  console.log(partnerships.id);
+  async function RemovePartnership() {
     const token = window.localStorage.getItem('token');
     const config = {
       method: 'DELETE',
-      url: `${baseUrl}/partnerships/${id}`,
+      url: `${baseUrl}/partnerships/${partnershipId.id}`,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -44,7 +47,8 @@ const Partnership = ({
     };
     try {
       await axios(config);
-      destroyPartnership(id);
+      destroyPartnership(partnershipId.id);
+      window.location.reload();
     } catch (error) {
       throw new Error(error);
     }
@@ -58,7 +62,7 @@ const Partnership = ({
               {el.name}
             </h1>
             <button
-              onClick={RemovePartnership}
+              onClick={() => RemovePartnership(partnershipId.id)}
               type="button"
               className="py-2 mr-2 px-4 mt-8 bg-red-500 text-white rounded-md shadow-xl"
             >

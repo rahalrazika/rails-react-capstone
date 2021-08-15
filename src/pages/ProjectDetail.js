@@ -28,7 +28,6 @@ const ProjectDetail = ({
   const getId = favourites.find(
     (item) => `${item.project_id}` === `${projectId}`,
   );
-  console.log(getId);
   async function addFavourite(e) {
     e.preventDefault();
 
