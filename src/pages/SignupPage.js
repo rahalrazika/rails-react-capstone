@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import baseUrl from '../api/baseUrl';
 import { saveToken, getUser } from '../redux/actions';
 
@@ -84,12 +85,12 @@ function SignUpPage(props) {
           </div>
         </form>
         <div className="flex items-center mt-6 justify-center">
-          <button
-            type="submit"
+          <Link
+            to="/login"
             className="justify-center text-gray-600 hover:underline"
           >
             You already have an account? Login and enjoy!
-          </button>
+          </Link>
         </div>
       </div>
     </div>
