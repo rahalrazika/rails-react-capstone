@@ -4,6 +4,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import baseUrl from '../api/baseUrl';
 import { saveToken, getUser } from '../redux/actions';
 
@@ -99,12 +100,12 @@ function LoginPage(props) {
           </div>
         </form>
         <div className="flex items-center mt-6 justify-center">
-          <button
-            type="submit"
+          <Link
+            to="/signup"
             className="justify-center text-gray-600 hover:underline"
           >
             Need to register? Sign up for free
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ Users can:
 - Check all the favourites and partnerships in a separate page.
 
 ## Screenshots
-![Game Scene](src/assets/screenshot.png)
+![Main Page](src/assets/screenshot.png)
 
 
 ## Built With 🔨
