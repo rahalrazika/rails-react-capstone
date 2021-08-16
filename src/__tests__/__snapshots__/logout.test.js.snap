@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Header  page correctly 1`] = `
+exports[`renders logout component correctly 1`] = `
 <button
   className="p-2 uppercase nav-links "
   onClick={[Function]}

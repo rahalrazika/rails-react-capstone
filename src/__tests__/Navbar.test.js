@@ -1,13 +1,16 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
+import { MemoryRouter } from 'react-router';
 import store from '../redux/store';
-import Logout from '../components/Logout';
+import NavBar from '../components/NavBar';
 
-it('renders logout component correctly', () => {
+it('renders navbar component correctly', () => {
   const tree = renderer.create(
     <Provider store={store}>
-      <Logout />
+      <MemoryRouter initialEntries={['main']}>
+        <NavBar />
+      </MemoryRouter>
     </Provider>,
   ).toJSON();
   expect(tree).toMatchSnapshot();

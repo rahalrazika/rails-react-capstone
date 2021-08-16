@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ProjectLink component correctly 1`] = `
+<a
+  className="hover:link hover:cursor-pointer"
+  href="/project/undefined"
+  onClick={[Function]}
+>
+  <div
+    className="relative h-screen flex"
+  >
+    <div
+      className="container flex justify-center"
+    >
+      <div
+        className="w-full mt-20 px-7"
+      >
+        <div
+          className="bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg"
+        >
+          <img
+            alt=""
+            className="rounded-t-lg"
+            src={
+              Object {
+                "canInstrument": true,
+                "createTransformer": [Function],
+                "getCacheKey": [Function],
+                "getCacheKeyAsync": [Function],
+                "process": [Function],
+                "processAsync": [Function],
+              }
+            }
+          />
+          <div
+            className="py-6 px-8 rounded-lg bg-white"
+          >
+            <div>
+              <h1
+                className="  text-gray-700 font-bold text-2xl mb-3 capitalize rounded transition duration-100  "
+              />
+            </div>
+            <div
+              className="mt-6 py-2 px-4 text-gray-800 font-bold "
+            >
+              <span
+                className="text-md"
+              >
+                $
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+`;
