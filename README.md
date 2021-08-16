@@ -2,6 +2,8 @@
 
  
  #Loop
+
+ 
 The consistency of this project is by building a full-stack application. What you see is the frontend for this application. 
 With that being said, let me introduce you to LOOP app, it’s a network where clients can meet with developers and schedule a zoom meeting. To exchange work experience and knowledge.
 Users can:

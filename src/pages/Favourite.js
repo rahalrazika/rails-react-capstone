@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import baseUrl from '../api/baseUrl';
+/* import axios from 'axios';
+import baseUrl from '../api/baseUrl'; */
 import fetchProjects from '../redux/actions/project';
+import removeFavourite from '../api/util';
 
 import {
   getFavourites,
@@ -24,28 +25,6 @@ const Fav = ({
     (el) => favouriteProjects.find((favEl) => favEl.project_id === el.id),
   );
 
-  const deleteFromFavouritePage = async (el) => {
-    const getId = favourites.find(
-      (item) => `${item.project_id}` === `${el.id}`,
-    );
-
-    const token = window.localStorage.getItem('token');
-    const config = {
-      method: 'DELETE',
-      url: `${baseUrl}/favourites/${getId.id}`,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    try {
-      await axios(config);
-      removeFavouriteFromRedux(getId.id);
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
   useEffect(() => {
     fetchProjects(window.localStorage.getItem('token'));
     getFavourites(window.localStorage.getItem('token'));
@@ -59,7 +38,7 @@ const Fav = ({
               {el.name}
             </h1>
             <button
-              onClick={() => deleteFromFavouritePage(el)}
+              onClick={() => removeFavourite(el, favourites, removeFavouriteFromRedux)}
               type="button"
               className="py-2 px-4 mt-8 bg-red-500 text-white rounded-md shadow-xl"
             >

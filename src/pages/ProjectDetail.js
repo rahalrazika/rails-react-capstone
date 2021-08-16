@@ -11,6 +11,7 @@ import {
   removeFavouriteFromRedux,
 } from '../redux/actions/favourite';
 import { addPartnershipToRedux } from '../redux/actions/partnership';
+import removeFavourite from '../api/util';
 
 const ProjectDetail = ({
   history,
@@ -51,27 +52,6 @@ const ProjectDetail = ({
     }
   }
 
-  async function destroyFavourite() {
-    const getId = favourites.find(
-      (item) => `${item.project_id}` === `${projectId}`,
-    );
-
-    const token = window.localStorage.getItem('token');
-    const config = {
-      method: 'DELETE',
-      url: `${baseUrl}/favourites/${getId.id}`,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    try {
-      await axios(config);
-      removeFavouriteFromRedux(getId.id);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
   const renderHearts = (favourites) => {
     const isFavourite = favourites.find(
       (el) => `${el.project_id}` === `${projectId}`,
@@ -80,7 +60,7 @@ const ProjectDetail = ({
     return (
       <div className="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4">
         {isFavourite ? (
-          <BsHeartFill onClick={destroyFavourite} className="text-yellow-300" />
+          <BsHeartFill onClick={() => removeFavourite({ id: projectId }, favourites, removeFavouriteFromRedux)} className="text-yellow-300" />
         ) : (
           <BsHeart onClick={addFavourite} />
         )}
