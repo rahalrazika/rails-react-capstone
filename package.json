@@ -2,13 +2,24 @@
   "name": "final-cap-frontend",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "babel-jest"
+    },
+    "globals": {
+      "window": {}
+    }
+  },
   "dependencies": {
+    "@babel/preset-env": "^7.15.0",
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
+    "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.1.10",
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6",
     "jwt-decode": "^3.1.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -19,6 +30,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-test-renderer": "^17.0.2",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
@@ -29,7 +41,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -68,4 +80,5 @@
     "stylelint-scss": "^3.20.1",
     "tailwindcss": "^2.2.7"
   }
+  
 }
