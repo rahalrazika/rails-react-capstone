@@ -7,10 +7,10 @@
 The consistency of this project is by building a full-stack application. What you see is the frontend for this application. 
 With that being said, let me introduce you to LOOP app, it’s a network where clients can meet with developers and schedule a zoom meeting. To exchange work experience and knowledge.
 Users can:
-- Create an account, log in and log out .
+- Create an account, log in and log out.
 - A page to show all the projects.
 - Create a favourite project Or start a partnership.
-- Check all the favourites and partnerships in a separate page.
+- Check all the favourites and partnerships on a separate page.
 
 ## Screenshots
 ![Main Page](src/assets/screenshot.png)
@@ -24,7 +24,7 @@ Users can:
 
 
 ## Live Demo 🚀
-[Loop]()
+[Loop](https://loopnnew--app.herokuapp.com/)
 
 ## Getting Started 💻
 
