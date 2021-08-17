@@ -16,6 +16,15 @@ Users can:
 ![Main Page](src/assets/screenshot.png)
 
 
+
+
+## APP demo
+
+
+
+![Loop Demo](src/assets/loop.gif)
+
+
 ## Built With 🔨
 - JavaScript
 - React
