@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -36,7 +37,7 @@ function SignUpPage(props) {
       getUser(result);
       window.location.href = '/login';
     } catch (error) {
-      throw new Error(error);
+      alert('PLease fill all the empty fields');
     }
   }
 
