@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+ ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ 
+ #Loop
 
-## Available Scripts
+ 
+The consistency of this project is by building a full-stack application. What you see is the frontend for this application. 
+With that being said, let me introduce you to LOOP app, it’s a network where clients can meet with developers and schedule a zoom meeting. To exchange work experience and knowledge.
+Users can:
+- Create an account, log in and log out.
+- A page to show all the projects.
+- Create a favourite project Or start a partnership.
+- Check all the favourites and partnerships on a separate page.
 
-In the project directory, you can run:
+## Screenshots
+![Main Page](src/assets/screenshot.png)
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## APP demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Loop Demo](src/assets/loop.gif)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Built With 🔨
+- JavaScript
+- React
+- Redux
+- Tailwind
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Live Demo 🚀
+[Loop](https://loopnnew--app.herokuapp.com/)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started 💻
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Installation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To get a local copy of the repository please run the following commands on your terminal:
 
-## Learn More
+```
+$ cd <folder>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+$ git clone https://github.com/rahalrazika/rails-react-capstone.git
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Testing 
+Below shows the following commands you will need to run tests:
+1- Install Jest using yarn: 
+```
+yarn add --dev jest
 
-### Code Splitting
+```
+- or npm :
+```
+npm install --save-dev jest
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+2- Or just run  
+```
+npm install
 
-### Analyzing the Bundle Size
+```
+to initialize the project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3- To run the tests, execute
+```
+npm run test 
 
-### Making a Progressive Web App
+```
+or 
+```
+yarn test 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+## Author
 
-### Advanced Configuration
+👤 **Razika Rahal**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Github: [@rahalrazika](https://github.com/rahalrazika)
+- Linkedin : [Razika Rahal](https://www.linkedin.com/in/razika-rahal-85539bbb/)
+- Twitter: [@Razika Rahal](https://twitter.com/RahalRazika)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🤝 Contributing
 
-### `yarn build` fails to minify
+Contributions, issues and feature requests are welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+- [Find Your House](https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App)).[by Alexey Savitskiy ](https://www.behance.net/alexey_savitskiy)
+-  Microverse
